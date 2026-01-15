@@ -1,18 +1,54 @@
 'use client';
 
-import { useState, useMemo } from 'react';
-
-
+import Image from 'next/image';
 
 export default function PeoplePage() {
-
-
-
   return (
-    <div className="w-screen min-h-screen flex flex-col relative bg-black">
-     sponsor page
+    <div className="w-screen min-h-screen bg-black flex items-center justify-center">
+      <div className="flex flex-col items-center justify-center gap-10 px-6">
+
+        {/* Heading */}
+        <h1 className="text-white text-center text-xl md:text-4xl font-light tracking-wide max-w-3xl">
+          WE THANK OUR SPONSORS FOR ORGANIZING GGJ
+        </h1>
+
+        {/* Sponsors */}
+        <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-24">
+          
+          {/* Sponsor 1 */}
+          <a
+            href="https://interviewbuddy.in"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="transition-transform hover:scale-110 duration-300"
+          >
+            <Image
+              src="/Sponsor1.png"
+              alt="Interview Buddy"
+              width={256}
+              height={256}
+              className="w-40 h-40 md:w-64 md:h-64 object-contain"
+            />
+          </a>
+
+          {/* Sponsor 2 */}
+          <a
+            href="https://unstop.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="transition-transform hover:scale-110 duration-300"
+          >
+            <Image
+              src="/Sponsor2.jpg"
+              alt="Unstop"
+              width={256}
+              height={256}
+              className="w-40 h-40 md:w-64 md:h-64 object-contain"
+            />
+          </a>
+
+        </div>
+      </div>
     </div>
   );
 }
-
-
