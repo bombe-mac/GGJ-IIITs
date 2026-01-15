@@ -34,7 +34,7 @@ export function SiteNav() {
       {
         icon: ScrollText,
         label: ' Timeline',
-        href: '/publications',
+        href: '/timeline',
         gradient:
           'radial-gradient(200px 200px at center, rgba(168,85,247,0.35), rgba(59,130,246,0.25), rgba(34,197,94,0.2))',
         iconColor: 'text-purple-400',
@@ -42,7 +42,7 @@ export function SiteNav() {
       {
         icon: Users2,
         label: 'Sponsor',
-        href: '/people',
+        href: '/sponsor',
         gradient:
           'radial-gradient(200px 200px at center, rgba(34,197,94,0.35), rgba(59,130,246,0.25), rgba(168,85,247,0.2))',
         iconColor: 'text-emerald-400',

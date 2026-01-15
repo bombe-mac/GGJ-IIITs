@@ -104,7 +104,7 @@ export default function DemoOne() {
 </section>
 
 {/* FAQ Section */}
-      <section className="relative py-24 px-6 md:px-16 bg-black">
+      <section className="relative py-6 px-6 md:px-16 bg-black">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-extralight tracking-tight text-white mb-12 text-center">
             Frequently Asked Questions
