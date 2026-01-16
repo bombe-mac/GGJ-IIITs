@@ -20,6 +20,15 @@ function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
+// --- Type Definition ---
+type Event = {
+  date: string;
+  title: string;
+  desc: string;
+  icon: React.ComponentType;
+  color: string;
+};
+
 // --- Data ---
 const EVENTS = [
   { 
@@ -141,7 +150,7 @@ const TimelineCard = ({ children, color, isLeft }: { children: React.ReactNode; 
   );
 };
 
-const TimelineRow = ({ event, index }: { event: any; index: number }) => {
+const TimelineRow = ({ event, index }: { event: Event; index: number }) => {
   const isLeft = index % 2 === 0;
   const ref = useRef(null);
   
