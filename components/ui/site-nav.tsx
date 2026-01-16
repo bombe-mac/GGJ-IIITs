@@ -12,11 +12,12 @@ export function SiteNav() {
   useEffect(() => {
 
     const checkMobile = () => {
-      // This effect only runs on client, so we don't need mobile detection here
-      // We'll use CSS classes for responsive behavior
+      if (window.innerWidth >= 768) {
+        setIsMobileMenuOpen(false);
+      }
     };
 
-    // Only add resize listener if needed
+    
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
   }, []);

@@ -58,7 +58,7 @@ export default function DemoOne() {
     <div className="w-screen min-h-screen flex flex-col relative">
       <Hero 
         title="Global Game Jam IIITs"
-        description="The GGJ is the world's largest game creation event taking place around the globe boasting tens of thousands of participants (jammers) at hundreds of physical and virtual sites in over one hundred countries around the world."
+        description="The GGJ is the world&apos;s largest game creation event taking place around the globe boasting tens of thousands of participants (jammers) at hundreds of physical and virtual sites in over one hundred countries around the world."
 
         logoImageUrl="/GGJ-logo.svg"
         logoAltText="GGj Logo"
@@ -132,7 +132,7 @@ export default function DemoOne() {
                 </summary>
                 <div className="px-6 pb-6">
                   <p className="text-white/70 leading-relaxed">
-                    Anyone can participate, as long as they are over the age of majority in the country hosting the jam (in most places this is 18, but check with your local site if you are not sure). People ages 16 & 17 can participate with a signed parental permission slip. Underage jammers can also participate if they are accompanied by a legal guardian. Experience is not necessary. Designers, developers, artists, musicians, knitters, gardeners, architects, everyone and anyone is welcome to try their hand at making a game during the GGJ. You can lean many new skills and support your team by contributing ideas, playtesting, and giving moral support. You could work on a non-digital game, and then there's no need for code!
+                    Anyone can participate, as long as they are over the age of majority in the country hosting the jam (in most places this is 18, but check with your local site if you are not sure). People ages 16 & 17 can participate with a signed parental permission slip. Underage jammers can also participate if they are accompanied by a legal guardian. Experience is not necessary. Designers, developers, artists, musicians, knitters, gardeners, architects, everyone and anyone is welcome to try their hand at making a game during the GGJ. You can lean many new skills and support your team by contributing ideas, playtesting, and giving moral support. You could work on a non-digital game, and then there&apos;s no need for code!
                   </p>
                 </div>
             </details>

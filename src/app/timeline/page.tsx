@@ -5,7 +5,7 @@ import {
   motion, 
   useScroll, 
   useTransform, 
-  useSpring, // <--- Added useSpring for smooth physics
+  useSpring,
   useMotionTemplate, 
   useMotionValue
 } from 'framer-motion';
@@ -316,7 +316,7 @@ export default function PublicationsPage() {
                 Event Timeline
             </h1>
             <p className="text-sm md:text-lg text-white/40 max-w-xl mx-auto leading-relaxed px-4">
-                The roadmap to the world's largest game creation event. 
+                The roadmap to the world&apos;s largest game creation event. 
                 Follow the schedule to ensure your submission is valid.
             </p>
         </motion.div>
