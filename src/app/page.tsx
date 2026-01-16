@@ -1,7 +1,6 @@
 "use client";
 
 import Hero from "@/components/ui/neural-network-hero";
-import { Brain, Users, Zap, Target } from "lucide-react";
 import GameCard from "./GameCard";
 // Site navigation is rendered globally from layout via <SiteNav />
 

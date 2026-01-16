@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { ExternalLink, Gamepad2, Calendar, Globe, Code } from "lucide-react";
+import { ExternalLink, Gamepad2, Globe, Code } from "lucide-react";
 
 type Game = {
   name: string;
@@ -20,12 +20,7 @@ type Props = {
   index: number;
 };
 
-const InfoBox = ({ title, children }: { title: string; children: React.ReactNode }) => (
-  <div className="mb-4 p-3 bg-white/5 backdrop-blur-sm rounded-lg border border-white/10">
-    <p className="text-[10px] text-gray-400 font-bold uppercase tracking-wider mb-1">{title}</p>
-    <p className="text-sm text-gray-300 leading-snug">{children}</p>
-  </div>
-);
+
 
 const TechList = ({ title, items, icon }: { title: string; items: string[]; icon: React.ReactNode }) => (
   <div className="flex-1">

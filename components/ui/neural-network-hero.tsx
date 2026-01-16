@@ -247,8 +247,6 @@ interface HeroProps {
 export default function Hero({
   title,
   description,
-  badgeText = "Generative Surfaces",
-  badgeLabel = "New",
   microDetails = ["Low‑weight font", "Tight tracking", "Subtle motion"],
   logoImageUrl,
   logoAltText

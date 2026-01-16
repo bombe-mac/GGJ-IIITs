@@ -3,7 +3,7 @@
 import { useMemo, useState, useEffect } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
 import { MenuBar } from '@/components/ui/menu-bar';
-import { Newspaper, Users2, FolderGit2, ScrollText, Home, Menu, X, Gamepad2, Zap } from 'lucide-react';
+import { Users2, FolderGit2, ScrollText, Home, Menu, X } from 'lucide-react';
 
 export function SiteNav() {
   const router = useRouter();
@@ -112,15 +112,6 @@ export function SiteNav() {
                   </button>
                 );
               })}
-
-              {/* Special Event Buttons in Mobile Menu */}
-              <div className="pt-4 mt-4 border-t border-white/10">
-                <div className="text-xs text-white/50 uppercase tracking-wider mb-3 px-4">Events</div>
-                <div className="space-y-2">
-//sponsors for mobile menu
-                  
-                </div>
-              </div>
             </div>
           </div>
         )}
