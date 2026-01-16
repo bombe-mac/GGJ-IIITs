@@ -461,7 +461,7 @@ export default function PublicationsPage() {
          <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-5"></div>
       </div>
 
-      <div className="relative z-10 container mx-auto px-4 md:px-6 py-12 md:py-32 max-w-6xl">
+      <div className="relative z-10 container mx-auto px-4 md:px-6 pt-20 pb-12 md:py-32 max-w-6xl">
         
         {/* Header */}
         <motion.div 
