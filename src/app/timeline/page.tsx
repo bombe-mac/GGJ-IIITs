@@ -1,16 +1,18 @@
 'use client';
 
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { 
   motion, 
   useScroll, 
   useTransform, 
   useSpring,
   useMotionTemplate, 
-  useMotionValue
+  useMotionValue,
+  useReducedMotion
 } from 'framer-motion';
 import { 
-  MapPin, Users, CheckCircle, BookOpen, Rocket, Play, Trophy 
+  MapPin, Users, CheckCircle, BookOpen, Rocket, Play, Trophy,
+  ChevronDown
 } from 'lucide-react';
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
@@ -84,10 +86,14 @@ const EVENTS = [
 
 // --- Components ---
 
-const ScrambleText = ({ text }: { text: string }) => {
+const ScrambleText = ({ text, isMobile = false }: { text: string; isMobile?: boolean }) => {
   const [displayText, setDisplayText] = useState(text);
+  const prefersReducedMotion = useReducedMotion();
   
   const scramble = () => {
+    // Skip scramble animation on mobile or if reduced motion is preferred
+    if (isMobile || prefersReducedMotion) return;
+    
     const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()";
     let iterations = 0;
     const interval = setInterval(() => {
@@ -100,14 +106,38 @@ const ScrambleText = ({ text }: { text: string }) => {
     }, 30);
   };
 
-  return <span onMouseEnter={scramble} className="cursor-default">{displayText}</span>;
+  return (
+    <span 
+      onMouseEnter={scramble} 
+      className="cursor-default select-none"
+    >
+      {displayText}
+    </span>
+  );
 };
 
-const TimelineCard = ({ children, color, isLeft }: { children: React.ReactNode; color: string; isLeft: boolean }) => {
+const TimelineCard = ({ 
+  children, 
+  color, 
+  isLeft, 
+  isExpanded,
+  onTap,
+  isMobile = false 
+}: { 
+  children: React.ReactNode; 
+  color: string; 
+  isLeft: boolean;
+  isExpanded?: boolean;
+  onTap?: () => void;
+  isMobile?: boolean;
+}) => {
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
+  const prefersReducedMotion = useReducedMotion();
 
   function handleMouseMove({ currentTarget, clientX, clientY }: React.MouseEvent) {
+    // Only enable on desktop
+    if (isMobile) return;
     const { left, top } = currentTarget.getBoundingClientRect();
     mouseX.set(clientX - left);
     mouseY.set(clientY - top);
@@ -119,163 +149,271 @@ const TimelineCard = ({ children, color, isLeft }: { children: React.ReactNode; 
     'rgba(250, 204, 21, 0.15)';
     
   const borderColor = 
-    color === 'cyan' ? 'group-hover:border-cyan-500/30' : 
-    color === 'purple' ? 'group-hover:border-purple-500/30' : 
-    'group-hover:border-yellow-500/30';
+    color === 'cyan' ? 'md:group-hover:border-cyan-500/30' : 
+    color === 'purple' ? 'md:group-hover:border-purple-500/30' : 
+    'md:group-hover:border-yellow-500/30';
+
+  const activeBorderColor = 
+    color === 'cyan' ? 'border-cyan-500/30' : 
+    color === 'purple' ? 'border-purple-500/30' : 
+    'border-yellow-500/30';
 
   return (
-    <div
+    <motion.div
       className={cn(
-        "group relative border border-white/5 bg-black/40 backdrop-blur-sm overflow-hidden rounded-xl md:rounded-2xl transition-all duration-500 shadow-2xl h-full flex flex-col justify-center",
+        "group relative border border-white/5 bg-black/40 backdrop-blur-sm overflow-hidden rounded-xl md:rounded-2xl transition-all duration-500 shadow-2xl flex flex-col",
         borderColor,
-        "p-2.5 md:p-8",
-        isLeft ? "text-right items-end" : "text-left items-start"
+        "p-4 md:p-8",
+        isLeft ? "text-right items-end md:text-right md:items-end" : "text-left items-start md:text-left md:items-start",
+        // Mobile: full width, desktop: conditional
+        "w-full",
+        // Mobile active state
+        isMobile && isExpanded && activeBorderColor
       )}
       onMouseMove={handleMouseMove}
+      onClick={isMobile ? onTap : undefined}
+      whileTap={isMobile ? { scale: 0.98 } : undefined}
+      transition={{ duration: 0.2 }}
+      role={isMobile ? "button" : undefined}
+      tabIndex={isMobile ? 0 : undefined}
+      aria-expanded={isMobile ? isExpanded : undefined}
     >
-      <motion.div
-        className="pointer-events-none absolute -inset-px opacity-0 transition duration-300 group-hover:opacity-100"
-        style={{
-          background: useMotionTemplate`
-            radial-gradient(
-              650px circle at ${mouseX}px ${mouseY}px,
-              ${highlightColor},
-              transparent 80%
-            )
-          `,
-        }}
-      />
+      {/* Desktop hover glow effect - hidden on mobile */}
+      {!isMobile && !prefersReducedMotion && (
+        <motion.div
+          className="pointer-events-none absolute -inset-px opacity-0 transition duration-300 md:group-hover:opacity-100"
+          style={{
+            background: useMotionTemplate`
+              radial-gradient(
+                650px circle at ${mouseX}px ${mouseY}px,
+                ${highlightColor},
+                transparent 80%
+              )
+            `,
+          }}
+        />
+      )}
+      
+      {/* Mobile tap glow effect */}
+      {isMobile && isExpanded && (
+        <motion.div
+          className="pointer-events-none absolute -inset-px opacity-100"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          style={{
+            background: `radial-gradient(circle at 50% 50%, ${highlightColor}, transparent 70%)`,
+          }}
+        />
+      )}
+      
       <div className="relative z-10 w-full">{children}</div>
-    </div>
+    </motion.div>
   );
 };
 
-const TimelineRow = ({ event, index }: { event: Event; index: number }) => {
+const TimelineRow = ({ event, index, isMobile = false }: { event: Event; index: number; isMobile?: boolean }) => {
   const isLeft = index % 2 === 0;
   const ref = useRef(null);
+  const [isExpanded, setIsExpanded] = useState(false);
+  const prefersReducedMotion = useReducedMotion();
   
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start end", "center center"],
   });
 
-  // Smooth out the card entrance as well
+  // Simplified animations for mobile
   const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 50,
-    damping: 20,
+    stiffness: prefersReducedMotion ? 200 : 50,
+    damping: prefersReducedMotion ? 30 : 20,
     restDelta: 0.001
   });
 
   const opacity = useTransform(smoothProgress, [0, 0.5], [0, 1]);
-  const y = useTransform(smoothProgress, [0, 0.5], [50, 0]);
-  const scale = useTransform(smoothProgress, [0, 0.5], [0.92, 1]);
+  const y = useTransform(smoothProgress, [0, 0.5], prefersReducedMotion ? [0, 0] : [50, 0]);
+  const scale = useTransform(smoothProgress, [0, 0.5], prefersReducedMotion ? [1, 1] : [0.92, 1]);
 
+  const toggleExpand = () => {
+    setIsExpanded(!isExpanded);
+  };
+
+  // Mobile: Single column layout, Desktop: Two column layout
   return (
     <motion.div 
       ref={ref}
       style={{ opacity, y, scale }}
       className={cn(
-        "relative w-full mb-8 md:mb-24",
-        "grid grid-cols-2 gap-1 md:gap-24" 
+        "relative w-full mb-6 md:mb-24",
+        // Mobile: single column, Desktop: two column grid
+        isMobile ? "flex flex-col" : "grid grid-cols-2 gap-1 md:gap-24"
       )}
     >
       
       {/* --- CONNECTOR SYSTEM --- */}
-      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-0 flex items-center justify-center">
+      {/* Mobile: Left-aligned connector, Desktop: Center connector */}
+      <div className={cn(
+        "absolute z-0 flex items-center justify-center",
+        isMobile 
+          ? "left-0 top-0 bottom-0 w-6" 
+          : "left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
+      )}>
          
-         {/* 1. Connector Line */}
-         <div className={cn(
-             "absolute h-[2px] bg-gradient-to-r",
-             isLeft 
-                ? "right-0 bg-gradient-to-l w-2 md:w-24" 
-                : "left-0 bg-gradient-to-r w-2 md:w-24",
+         {/* 1. Connector Line - Mobile: vertical, Desktop: horizontal */}
+         {isMobile ? (
+           <div className={cn(
+             "absolute w-[2px] bg-gradient-to-b top-0 bottom-0",
              event.color === "cyan" ? "from-cyan-500/50 to-transparent" : 
              event.color === "purple" ? "from-purple-500/50 to-transparent" : 
              "from-yellow-500/50 to-transparent"
-         )} />
+           )} />
+         ) : (
+           <div className={cn(
+             "absolute h-[2px] bg-gradient-to-r",
+             isLeft 
+               ? "right-0 bg-gradient-to-l w-2 md:w-24" 
+               : "left-0 bg-gradient-to-r w-2 md:w-24",
+             event.color === "cyan" ? "from-cyan-500/50 to-transparent" : 
+             event.color === "purple" ? "from-purple-500/50 to-transparent" : 
+             "from-yellow-500/50 to-transparent"
+           )} />
+         )}
 
          {/* 2. Glow Effect */}
          <div className={cn(
              "absolute rounded-full opacity-30 blur-lg",
-             "w-6 h-6 md:w-12 md:h-12",
+             "w-4 h-4 md:w-12 md:h-12",
              event.color === "cyan" ? "bg-cyan-500" : event.color === "purple" ? "bg-purple-500" : "bg-yellow-500"
          )} />
          
          {/* 3. Core Dot */}
          <div className={cn(
              "relative rounded-full border-2 border-[#020617] shadow-[0_0_15px_rgba(0,0,0,1)] z-10",
-             "w-2.5 h-2.5 md:w-4 md:h-4", 
+             "w-3 h-3 md:w-4 md:h-4", 
              event.color === "cyan" ? "bg-cyan-400" : event.color === "purple" ? "bg-purple-400" : "bg-yellow-400"
          )} />
       </div>
 
-      {/* --- LEFT SIDE --- */}
-      <div className={cn(
-          "flex flex-col justify-center",
-          isLeft ? "items-end" : "invisible" 
-      )}>
-        {isLeft && (
-          <div className="w-full">
-             <TimelineCard color={event.color} isLeft={true}>
-                <div className="flex flex-col gap-1 md:gap-3 items-end w-full">
-                    
+      {/* --- MOBILE LAYOUT: Single column with left padding --- */}
+      {isMobile ? (
+        <div className="pl-10 w-full">
+          <TimelineCard 
+            color={event.color} 
+            isLeft={false}
+            isExpanded={isExpanded}
+            onTap={toggleExpand}
+            isMobile={true}
+          >
+            <div className="flex flex-col gap-2 items-start w-full">
+              {/* Badge with expand indicator */}
+              <div className="flex items-center justify-between w-full gap-2 mb-1">
+                <div className={cn(
+                  "inline-flex items-center gap-1 px-2 py-1 rounded-full font-mono font-semibold tracking-wide border",
+                  "text-[10px]",
+                  event.color === "cyan" ? "bg-cyan-500/10 border-cyan-500/20 text-cyan-300" : 
+                  event.color === "purple" ? "bg-purple-500/10 border-purple-500/20 text-purple-300" : 
+                  "bg-yellow-500/10 border-yellow-500/20 text-yellow-300"
+                )}>
+                  <ScrambleText text={event.date} isMobile={true} />
+                </div>
+                <motion.div
+                  animate={{ rotate: isExpanded ? 180 : 0 }}
+                  transition={{ duration: 0.3 }}
+                  className="flex-shrink-0"
+                >
+                  <ChevronDown className="w-4 h-4 text-white/60" />
+                </motion.div>
+              </div>
+
+              <h3 className="font-bold text-white leading-tight text-xl">
+                {event.title}
+              </h3>
+              
+              <motion.div
+                initial={false}
+                animate={{ 
+                  height: isExpanded ? "auto" : 0,
+                  opacity: isExpanded ? 1 : 0
+                }}
+                transition={{ duration: 0.3, ease: "easeInOut" }}
+                style={{ overflow: "hidden" }}
+              >
+                <p className="text-gray-400 leading-relaxed text-sm pt-2">
+                  {event.desc}
+                </p>
+              </motion.div>
+            </div>
+          </TimelineCard>
+        </div>
+      ) : (
+        <>
+          {/* --- DESKTOP LAYOUT: Two column --- */}
+          {/* LEFT SIDE */}
+          <div className={cn(
+            "flex flex-col justify-center",
+            isLeft ? "items-end" : "invisible" 
+          )}>
+            {isLeft && (
+              <div className="w-full">
+                <TimelineCard color={event.color} isLeft={true}>
+                  <div className="flex flex-col gap-1 md:gap-3 items-end w-full">
                     {/* Badge */}
                     <div className={cn(
-                        "inline-flex items-center gap-1 md:gap-2 px-1.5 py-0.5 md:px-3 md:py-1 rounded-full font-mono font-bold tracking-wider mb-0.5 border",
-                        "text-[8px] md:text-xs",
-                         event.color === "cyan" ? "bg-cyan-500/10 border-cyan-500/20 text-cyan-300" : 
-                         event.color === "purple" ? "bg-purple-500/10 border-purple-500/20 text-purple-300" : 
-                         "bg-yellow-500/10 border-yellow-500/20 text-yellow-300"
+                      "inline-flex items-center gap-1 md:gap-2 px-1.5 py-0.5 md:px-3 md:py-1 rounded-full font-mono font-bold tracking-wider mb-0.5 border",
+                      "text-[8px] md:text-xs",
+                      event.color === "cyan" ? "bg-cyan-500/10 border-cyan-500/20 text-cyan-300" : 
+                      event.color === "purple" ? "bg-purple-500/10 border-purple-500/20 text-purple-300" : 
+                      "bg-yellow-500/10 border-yellow-500/20 text-yellow-300"
                     )}>
-                        <ScrambleText text={event.date} />
+                      <ScrambleText text={event.date} />
                     </div>
 
                     <h3 className="font-bold text-white leading-none text-[10px] md:text-3xl">
-                        {event.title}
+                      {event.title}
                     </h3>
                     
                     <p className="text-gray-400 leading-tight md:leading-relaxed text-[8px] md:text-base opacity-80">
-                        {event.desc}
+                      {event.desc}
                     </p>
-                </div>
-             </TimelineCard>
+                  </div>
+                </TimelineCard>
+              </div>
+            )}
           </div>
-        )}
-      </div>
 
-      {/* --- RIGHT SIDE --- */}
-      <div className={cn(
-          "flex flex-col justify-center",
-          !isLeft ? "items-start" : "invisible" 
-      )}>
-        {!isLeft && (
-           <div className="w-full">
-             <TimelineCard color={event.color} isLeft={false}>
-                <div className="flex flex-col gap-1 md:gap-3 items-start w-full">
-                    
-                     {/* Badge */}
-                     <div className={cn(
-                        "inline-flex items-center gap-1 md:gap-2 px-1.5 py-0.5 md:px-3 md:py-1 rounded-full font-mono font-bold tracking-wider mb-0.5 border",
-                        "text-[8px] md:text-xs",
-                         event.color === "cyan" ? "bg-cyan-500/10 border-cyan-500/20 text-cyan-300" : 
-                         event.color === "purple" ? "bg-purple-500/10 border-purple-500/20 text-purple-300" : 
-                         "bg-yellow-500/10 border-yellow-500/20 text-yellow-300"
+          {/* RIGHT SIDE */}
+          <div className={cn(
+            "flex flex-col justify-center",
+            !isLeft ? "items-start" : "invisible" 
+          )}>
+            {!isLeft && (
+              <div className="w-full">
+                <TimelineCard color={event.color} isLeft={false}>
+                  <div className="flex flex-col gap-1 md:gap-3 items-start w-full">
+                    {/* Badge */}
+                    <div className={cn(
+                      "inline-flex items-center gap-1 md:gap-2 px-1.5 py-0.5 md:px-3 md:py-1 rounded-full font-mono font-bold tracking-wider mb-0.5 border",
+                      "text-[8px] md:text-xs",
+                      event.color === "cyan" ? "bg-cyan-500/10 border-cyan-500/20 text-cyan-300" : 
+                      event.color === "purple" ? "bg-purple-500/10 border-purple-500/20 text-purple-300" : 
+                      "bg-yellow-500/10 border-yellow-500/20 text-yellow-300"
                     )}>
-                        <ScrambleText text={event.date} />
+                      <ScrambleText text={event.date} />
                     </div>
 
                     <h3 className="font-bold text-white leading-none text-[10px] md:text-3xl">
-                        {event.title}
+                      {event.title}
                     </h3>
 
                     <p className="text-gray-400 leading-tight md:leading-relaxed text-[8px] md:text-base opacity-80">
-                        {event.desc}
+                      {event.desc}
                     </p>
-                </div>
-             </TimelineCard>
-           </div>
-        )}
-      </div>
+                  </div>
+                </TimelineCard>
+              </div>
+            )}
+          </div>
+        </>
+      )}
 
     </motion.div>
   );
@@ -283,6 +421,19 @@ const TimelineRow = ({ event, index }: { event: Event; index: number }) => {
 
 export default function PublicationsPage() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [isMobile, setIsMobile] = useState(false);
+  const prefersReducedMotion = useReducedMotion();
+  
+  // Detect mobile on mount and resize
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768); // md breakpoint
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
   
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -290,12 +441,10 @@ export default function PublicationsPage() {
   });
 
   // --- PHYSICS ENGINE FOR LINE ---
-  // This "spring" smooths out the scroll value.
-  // Stiffness: How "tight" the spring is (Lower = Slower/Heavier)
-  // Damping: How much friction (Higher = Less bounce, smoother stop)
+  // Simplified for mobile performance
   const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 30,
+    stiffness: prefersReducedMotion ? 200 : (isMobile ? 150 : 100),
+    damping: prefersReducedMotion ? 40 : (isMobile ? 35 : 30),
     restDelta: 0.001
   });
   
@@ -312,19 +461,19 @@ export default function PublicationsPage() {
          <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-5"></div>
       </div>
 
-      <div className="relative z-10 container mx-auto px-1 md:px-6 py-20 md:py-32 max-w-6xl">
+      <div className="relative z-10 container mx-auto px-4 md:px-6 py-12 md:py-32 max-w-6xl">
         
         {/* Header */}
         <motion.div 
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1 }}
-            className="text-center mb-16 md:mb-40"
+            transition={{ duration: prefersReducedMotion ? 0 : 1 }}
+            className="text-center mb-12 md:mb-40"
         >
-            <h1 className="text-4xl md:text-8xl font-bold tracking-tight text-white mb-6">
+            <h1 className="text-3xl md:text-8xl font-bold tracking-tight text-white mb-4 md:mb-6">
                 Event Timeline
             </h1>
-            <p className="text-sm md:text-lg text-white/40 max-w-xl mx-auto leading-relaxed px-4">
+            <p className="text-sm md:text-lg text-white/40 max-w-xl mx-auto leading-relaxed px-2 md:px-4">
                 The roadmap to the world&apos;s largest game creation event. 
                 Follow the schedule to ensure your submission is valid.
             </p>
@@ -333,22 +482,31 @@ export default function PublicationsPage() {
         {/* Timeline Container */}
         <div ref={containerRef} className="relative pb-10">
             
-            {/* The Spine (Vertical Line) */}
-            <div className="absolute left-1/2 top-0 bottom-0 w-[2px] bg-white/5 -translate-x-1/2" />
-            
-            {/* Animated Gradient Line */}
-            <motion.div 
-                style={{ height }}
-                className="absolute left-1/2 top-0 w-[2px] bg-gradient-to-b from-cyan-400 via-purple-500 to-cyan-500 -translate-x-1/2 z-10 shadow-[0_0_15px_rgba(34,211,238,0.5)]"
-            >
-                {/* End Node: A small glowing dot at the tip of the line */}
-                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-2 h-2 bg-cyan-400 rounded-full shadow-[0_0_10px_rgba(34,211,238,0.8)]" />
-            </motion.div>
+            {/* The Spine (Vertical Line) - Desktop: center, Mobile: left-aligned */}
+            {!isMobile && (
+              <>
+                <div className="absolute left-1/2 top-0 bottom-0 w-[2px] bg-white/5 -translate-x-1/2" />
+                
+                {/* Animated Gradient Line - Desktop only */}
+                <motion.div 
+                    style={{ height }}
+                    className="absolute left-1/2 top-0 w-[2px] bg-gradient-to-b from-cyan-400 via-purple-500 to-cyan-500 -translate-x-1/2 z-10 shadow-[0_0_15px_rgba(34,211,238,0.5)]"
+                >
+                    {/* End Node: A small glowing dot at the tip of the line */}
+                    <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-2 h-2 bg-cyan-400 rounded-full shadow-[0_0_10px_rgba(34,211,238,0.8)]" />
+                </motion.div>
+              </>
+            )}
 
             {/* Event Items */}
             <div className="relative z-20">
                 {EVENTS.map((event, index) => (
-                    <TimelineRow key={index} event={event} index={index} />
+                    <TimelineRow 
+                      key={index} 
+                      event={event} 
+                      index={index} 
+                      isMobile={isMobile}
+                    />
                 ))}
             </div>
             
