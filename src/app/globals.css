@@ -182,3 +182,19 @@
     border-color: rgba(168, 85, 247, 0.6);
   }
 }
+@keyframes gradientMove {
+  0% {
+    transform: translateX(-20%);
+  }
+  50% {
+    transform: translateX(20%);
+  }
+  100% {
+    transform: translateX(-20%);
+  }
+}
+
+.animate-gradientMove {
+  animation: gradientMove 12s ease-in-out infinite;
+}
+
