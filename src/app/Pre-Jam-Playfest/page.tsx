@@ -249,7 +249,7 @@ export default function PreJamPlayfestPage() {
                 Beginner Track
               </h3>
               <p className="text-white/80 text-base sm:text-sm md:text-base lg:text-lg">
-                Perfect for those new to game development. Learn the fundamentals and compete with peers at your level.
+              A special track designed for first-year undergraduate students.
               </p>
             </motion.div>
 
@@ -262,7 +262,7 @@ export default function PreJamPlayfestPage() {
                 Open Track
               </h3>
               <p className="text-white/80 text-base sm:text-sm md:text-base lg:text-lg">
-                For experienced developers ready to showcase their skills and compete at an advanced level.
+               For all other senior undergraduates (all other UG's).
               </p>
             </motion.div>
           </motion.div>
