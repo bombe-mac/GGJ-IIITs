@@ -3,7 +3,7 @@
 import { useMemo, useState, useEffect } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
 import { MenuBar } from '@/components/ui/menu-bar';
-import { Users2, FolderGit2, ScrollText, Home, Menu, X } from 'lucide-react';
+import { Users2, FolderGit2, ScrollText, Home, Menu, X, Trophy } from 'lucide-react';
 
 export function SiteNav() {
   const router = useRouter();
@@ -55,6 +55,14 @@ export function SiteNav() {
         gradient:
           'radial-gradient(200px 200px at center, rgba(59,130,246,0.35), rgba(34,197,94,0.25), rgba(168,85,247,0.2))',
         iconColor: 'text-sky-400',
+      },
+      {
+        icon: Trophy,
+        label: 'Pre-Jam Playfest',
+        href: '/Pre-Jam-Playfest',
+        gradient:
+          'radial-gradient(200px 200px at center, rgba(250,204,21,0.35), rgba(251,146,60,0.25), rgba(239,68,68,0.2))',
+        iconColor: 'text-yellow-400',
       }
       
     ],

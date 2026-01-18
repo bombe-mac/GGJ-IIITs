@@ -16,6 +16,7 @@ import {
 } from 'lucide-react';
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
+import { ShaderBackground } from '@/components/ui/neural-network-hero';
 
 // --- Utility ---
 function cn(...inputs: ClassValue[]) {
@@ -161,7 +162,8 @@ const TimelineCard = ({
   return (
     <motion.div
       className={cn(
-        "group relative border border-white/5 bg-black/40 backdrop-blur-sm overflow-hidden rounded-xl md:rounded-2xl transition-all duration-500 shadow-2xl flex flex-col",
+        "group relative border border-white/20 bg-white/5 backdrop-blur-md overflow-hidden rounded-xl md:rounded-2xl transition-all duration-500 shadow-2xl flex flex-col",
+        "hover:bg-white/10 hover:border-white/30",
         borderColor,
         "p-4 md:p-8",
         isLeft ? "text-right items-end md:text-right md:items-end" : "text-left items-start md:text-left md:items-start",
@@ -309,9 +311,9 @@ const TimelineRow = ({ event, index, isMobile = false }: { event: Event; index: 
                 <div className={cn(
                   "inline-flex items-center gap-1 px-2 py-1 rounded-full font-mono font-semibold tracking-wide border",
                   "text-[10px]",
-                  event.color === "cyan" ? "bg-cyan-500/10 border-cyan-500/20 text-cyan-300" : 
-                  event.color === "purple" ? "bg-purple-500/10 border-purple-500/20 text-purple-300" : 
-                  "bg-yellow-500/10 border-yellow-500/20 text-yellow-300"
+                  event.color === "cyan" ? "bg-cyan-500/20 border-cyan-500/40 text-cyan-200" : 
+                  event.color === "purple" ? "bg-purple-500/20 border-purple-500/40 text-purple-200" : 
+                  "bg-yellow-500/20 border-yellow-500/40 text-yellow-200"
                 )}>
                   <ScrambleText text={event.date} isMobile={true} />
                 </div>
@@ -337,7 +339,7 @@ const TimelineRow = ({ event, index, isMobile = false }: { event: Event; index: 
                 transition={{ duration: 0.3, ease: "easeInOut" }}
                 style={{ overflow: "hidden" }}
               >
-                <p className="text-gray-400 leading-relaxed text-sm pt-2">
+                <p className="text-gray-300 leading-relaxed text-sm pt-2">
                   {event.desc}
                 </p>
               </motion.div>
@@ -371,7 +373,7 @@ const TimelineRow = ({ event, index, isMobile = false }: { event: Event; index: 
                       {event.title}
                     </h3>
                     
-                    <p className="text-gray-400 leading-tight md:leading-relaxed text-[8px] md:text-base opacity-80">
+                    <p className="text-gray-300 leading-tight md:leading-relaxed text-[8px] md:text-base opacity-90">
                       {event.desc}
                     </p>
                   </div>
@@ -404,7 +406,7 @@ const TimelineRow = ({ event, index, isMobile = false }: { event: Event; index: 
                       {event.title}
                     </h3>
 
-                    <p className="text-gray-400 leading-tight md:leading-relaxed text-[8px] md:text-base opacity-80">
+                    <p className="text-gray-300 leading-tight md:leading-relaxed text-[8px] md:text-base opacity-90">
                       {event.desc}
                     </p>
                   </div>
@@ -451,67 +453,69 @@ export default function PublicationsPage() {
   const height = useTransform(smoothProgress, [0, 1], ["0%", "100%"]);
 
   return (
-    <div className="min-h-screen bg-[#020617] text-white overflow-x-hidden selection:bg-cyan-500/30">
-      
-      {/* Background Ambience */}
-      <div className="fixed inset-0 z-0 pointer-events-none">
-         <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
-         <div className="absolute top-[-20%] left-[-10%] w-[50vw] h-[50vw] bg-purple-900/10 rounded-full blur-[150px]" />
-         <div className="absolute bottom-[-20%] right-[-10%] w-[50vw] h-[50vw] bg-cyan-900/10 rounded-full blur-[150px]" />
-         <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-5"></div>
-      </div>
+    <div className="w-screen min-h-screen flex flex-col relative">
+      {/* Hero Section with ShaderBackground - only covers viewport height */}
+      <section className="relative w-full overflow-hidden md:min-h-screen">
+        <ShaderBackground />
 
-      <div className="relative z-10 container mx-auto px-4 md:px-6 pt-20 pb-12 md:py-32 max-w-6xl">
-        
-        {/* Header */}
-        <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: prefersReducedMotion ? 0 : 1 }}
-            className="text-center mb-12 md:mb-40"
-        >
-            <h1 className="text-3xl md:text-8xl font-bold tracking-tight text-white mb-4 md:mb-6">
-                Event Timeline
-            </h1>
-            <p className="text-sm md:text-lg text-white/40 max-w-xl mx-auto leading-relaxed px-2 md:px-4">
-                The roadmap to the world&apos;s largest game creation event. 
-                Follow the schedule to ensure your submission is valid.
-            </p>
-        </motion.div>
-
-        {/* Timeline Container */}
-        <div ref={containerRef} className="relative pb-10">
-            
-            {/* The Spine (Vertical Line) - Desktop: center, Mobile: left-aligned */}
-            {!isMobile && (
-              <>
-                <div className="absolute left-1/2 top-0 bottom-0 w-[2px] bg-white/5 -translate-x-1/2" />
-                
-                {/* Animated Gradient Line - Desktop only */}
-                <motion.div 
-                    style={{ height }}
-                    className="absolute left-1/2 top-0 w-[2px] bg-gradient-to-b from-cyan-400 via-purple-500 to-cyan-500 -translate-x-1/2 z-10 shadow-[0_0_15px_rgba(34,211,238,0.5)]"
-                >
-                    {/* End Node: A small glowing dot at the tip of the line */}
-                    <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-2 h-2 bg-cyan-400 rounded-full shadow-[0_0_10px_rgba(34,211,238,0.8)]" />
-                </motion.div>
-              </>
-            )}
-
-            {/* Event Items */}
-            <div className="relative z-20">
-                {EVENTS.map((event, index) => (
-                    <TimelineRow 
-                      key={index} 
-                      event={event} 
-                      index={index} 
-                      isMobile={isMobile}
-                    />
-                ))}
-            </div>
-            
+        <div className="relative mx-auto flex max-w-7xl flex-col items-center justify-start gap-3 px-6 pb-8 pt-24 sm:justify-center sm:gap-4 sm:pt-36 sm:pb-10 md:gap-6 md:px-10 md:pt-44 md:pb-16 md:justify-center md:min-h-screen lg:px-16">
+          {/* Header */}
+          <motion.div 
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: prefersReducedMotion ? 0 : 1 }}
+              className="text-center"
+          >
+              <h1 className="text-3xl md:text-8xl font-bold tracking-tight text-white mb-4 sm:mb-5 md:mb-6">
+                  Event Timeline
+              </h1>
+              <p className="text-sm md:text-lg text-white/40 max-w-xl mx-auto leading-relaxed px-2 md:px-4 mb-0 sm:mb-2">
+                  The roadmap to the world&apos;s largest game creation event. 
+                  Follow the schedule to ensure your submission is valid.
+              </p>
+          </motion.div>
         </div>
-      </div>
+
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-12 sm:h-16 md:h-24 bg-gradient-to-t from-black/40 to-transparent" />
+      </section>
+
+      {/* Timeline Content Section with Black Background */}
+      <section className="relative bg-black py-2 overflow-hidden">
+        <div className="relative z-10 container mx-auto px-4 md:px-6 pt-8 pb-12 sm:pt-10 md:pt-16 md:pb-32 max-w-6xl">
+          {/* Timeline Container */}
+          <div ref={containerRef} className="relative pb-10">
+              
+              {/* The Spine (Vertical Line) - Desktop: center, Mobile: left-aligned */}
+              {!isMobile && (
+                <>
+                  <div className="absolute left-1/2 top-0 bottom-0 w-[2px] bg-white/5 -translate-x-1/2" />
+                  
+                  {/* Animated Gradient Line - Desktop only */}
+                  <motion.div 
+                      style={{ height }}
+                      className="absolute left-1/2 top-0 w-[2px] bg-gradient-to-b from-cyan-400 via-purple-500 to-cyan-500 -translate-x-1/2 z-10 shadow-[0_0_15px_rgba(34,211,238,0.5)]"
+                  >
+                      {/* End Node: A small glowing dot at the tip of the line */}
+                      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-2 h-2 bg-cyan-400 rounded-full shadow-[0_0_10px_rgba(34,211,238,0.8)]" />
+                  </motion.div>
+                </>
+              )}
+
+              {/* Event Items */}
+              <div className="relative z-20">
+                  {EVENTS.map((event, index) => (
+                      <TimelineRow 
+                        key={index} 
+                        event={event} 
+                        index={index} 
+                        isMobile={isMobile}
+                      />
+                  ))}
+              </div>
+              
+          </div>
+        </div>
+      </section>
     </div>
   );
 }

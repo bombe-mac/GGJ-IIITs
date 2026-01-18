@@ -190,7 +190,7 @@ function ShaderPlane() {
   );
 }
 
-function ShaderBackground() {
+export function ShaderBackground() {
   const canvasRef = useRef<HTMLDivElement | null>(null);
   
   const camera = useMemo(() => ({ position: [0, 0, 1] as [number, number, number], fov: 75, near: 0.1, far: 1000 }), []);
@@ -381,8 +381,8 @@ export default function Hero({
     <section ref={sectionRef} className="relative min-h-screen w-full overflow-hidden">
       <ShaderBackground />
 
-      <div className="relative mx-auto flex max-w-7xl flex-col items-start gap-6 px-6 pb-24 pt-36 sm:gap-8 sm:pt-44 md:px-10 lg:px-16">
-        <div className="flex flex-col sm:flex-row items-center sm:items-center gap-6 sm:gap-8 lg:gap-40">
+      <div className={`relative mx-auto flex max-w-7xl flex-col gap-6 px-6 pb-24 pt-36 sm:gap-8 sm:pt-44 md:px-10 lg:px-16 ${logoImageUrl ? 'items-start' : 'items-center'}`}>
+        <div className={`flex flex-col sm:flex-row items-center sm:items-center gap-6 sm:gap-8 ${logoImageUrl ? 'lg:gap-40' : ''}`}>
           {logoImageUrl && (
             <div ref={logoRef} className="flex-shrink-0 order-1 sm:order-2">
               <Image
@@ -394,12 +394,12 @@ export default function Hero({
               />
             </div>
           )}
-          <h1 ref={headerRef} className="max-w-2xl text-left text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extralight leading-[1.05] tracking-tight text-white order-2 sm:order-1 text-center sm:text-left">
+          <h1 ref={headerRef} className={`max-w-2xl text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extralight leading-[1.05] tracking-tight text-white ${logoImageUrl ? 'order-2 sm:order-1 text-center sm:text-left' : 'text-center'}`}>
             {title}
           </h1>
         </div>
 
-        <p ref={paraRef} className="max-w-xl text-left text-base font-light leading-relaxed tracking-tight text-white/75 sm:text-lg">
+        <p ref={paraRef} className={`max-w-xl text-base font-light leading-relaxed tracking-tight text-white/75 sm:text-lg ${logoImageUrl ? 'text-left' : 'text-center'}`}>
           {description}
         </p>
 
