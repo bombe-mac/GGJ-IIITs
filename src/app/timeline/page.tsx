@@ -469,7 +469,7 @@ export default function PublicationsPage() {
               <h1 className="text-3xl md:text-8xl font-bold tracking-tight text-white mb-4 sm:mb-5 md:mb-6">
                   Event Timeline
               </h1>
-              <p className="text-sm md:text-lg text-white/40 max-w-xl mx-auto leading-relaxed px-2 md:px-4 mb-0 sm:mb-2">
+              <p className="text-base sm:text-base md:text-lg lg:text-xl text-white/40 max-w-xl mx-auto leading-relaxed px-2 md:px-4 mb-0 sm:mb-2">
                   The roadmap to the world&apos;s largest game creation event. 
                   Follow the schedule to ensure your submission is valid.
               </p>

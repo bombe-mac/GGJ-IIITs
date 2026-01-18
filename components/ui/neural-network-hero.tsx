@@ -399,7 +399,7 @@ export default function Hero({
           </h1>
         </div>
 
-        <p ref={paraRef} className={`max-w-xl text-base font-light leading-relaxed tracking-tight text-white/75 sm:text-lg ${logoImageUrl ? 'text-left' : 'text-center'}`}>
+        <p ref={paraRef} className={`max-w-xl text-lg sm:text-lg md:text-xl font-light leading-relaxed tracking-tight text-white/75 ${logoImageUrl ? 'text-left' : 'text-center'}`}>
           {description}
         </p>
 

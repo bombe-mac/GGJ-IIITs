@@ -43,15 +43,15 @@ export default function PreJamPlayfestPage() {
           >
             <motion.div variants={fadeInUp} className="flex items-center gap-2 text-white/90 bg-white/5 px-3 py-2.5 sm:px-4 sm:py-2 rounded-lg border border-white/10 w-full sm:w-auto">
               <Calendar className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0 text-cyan-400" />
-              <span className="text-xs sm:text-sm md:text-base font-light break-words">22nd – 24th January 2026</span>
+              <span className="text-base sm:text-sm md:text-base font-light break-words">22nd – 24th January 2026</span>
             </motion.div>
             <motion.div variants={fadeInUp} className="flex items-center gap-2 text-white/90 bg-white/5 px-3 py-2.5 sm:px-4 sm:py-2 rounded-lg border border-white/10 w-full sm:w-auto">
               <MapPin className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0 text-purple-400" />
-              <span className="text-xs sm:text-sm md:text-base font-light">IIIT Sri City</span>
+              <span className="text-base sm:text-sm md:text-base font-light">IIIT Sri City</span>
             </motion.div>
             <motion.div variants={fadeInUp} className="flex items-start gap-2 text-white/90 bg-white/5 px-3 py-2.5 sm:px-4 sm:py-2 rounded-lg border border-white/10 w-full sm:w-auto">
               <Gamepad2 className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0 text-yellow-400 mt-0.5" />
-              <span className="text-xs sm:text-sm md:text-base font-light leading-snug">Game Development | Learning + Competition</span>
+              <span className="text-base sm:text-sm md:text-base font-light leading-snug">Game Development | Learning + Competition</span>
             </motion.div>
           </motion.div>
 
@@ -62,14 +62,14 @@ export default function PreJamPlayfestPage() {
             variants={fadeInUp}
             className="bg-white/5 border border-white/10 rounded-xl sm:rounded-2xl p-5 sm:p-6 md:p-8 lg:p-10 backdrop-blur-md hover:bg-white/10 transition-all duration-300"
           >
-            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-extralight tracking-tight text-white mb-4 sm:mb-5 md:mb-6 text-center">
+            <h2 className="text-3xl sm:text-2xl md:text-3xl lg:text-4xl font-extralight tracking-tight text-white mb-4 sm:mb-5 md:mb-6 text-center">
               About The Event
             </h2>
             <div className="space-y-3 sm:space-y-4 text-center max-w-3xl mx-auto">
-              <p className="text-white/80 leading-relaxed text-xs sm:text-sm md:text-base lg:text-lg">
+              <p className="text-white/80 leading-relaxed text-base sm:text-sm md:text-base lg:text-lg">
                 Pre-Jam Playfest 2026: Learn & Compete is a 3-day bootcamp and competitive knowledge challenge organized by the IOTA Club of IIIT Sri City, designed to bring together passionate and aspiring game developers.
               </p>
-              <p className="text-white/80 leading-relaxed text-xs sm:text-sm md:text-base lg:text-lg">
+              <p className="text-white/80 leading-relaxed text-base sm:text-sm md:text-base lg:text-lg">
                 This event blends hands-on learning, community interaction, and competitive assessment, making it ideal for both beginners and experienced students preparing for large-scale game jams.
               </p>
             </div>
@@ -85,7 +85,7 @@ export default function PreJamPlayfestPage() {
             whileInView="animate"
             viewport={{ once: true }}
             variants={fadeInUp}
-            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extralight tracking-tight text-white mb-6 sm:mb-8 md:mb-10 lg:mb-12 text-center"
+            className="text-4xl sm:text-3xl md:text-4xl lg:text-5xl font-extralight tracking-tight text-white mb-6 sm:mb-8 md:mb-10 lg:mb-12 text-center"
           >
             Event Structure
           </motion.h2>
@@ -121,7 +121,7 @@ export default function PreJamPlayfestPage() {
                   className="mb-4 sm:mb-5 md:mb-6"
                 >
                   <div className="inline-flex items-center px-4 py-1.5 sm:px-5 sm:py-2 md:px-6 md:py-2.5 bg-gradient-to-r from-cyan-500/30 via-cyan-500/40 to-cyan-500/30 border-2 border-cyan-400/50 rounded-full shadow-lg shadow-cyan-500/30 backdrop-blur-sm">
-                    <span className="text-xs sm:text-sm md:text-base font-bold text-cyan-100 tracking-wider uppercase">Day 1 & 2</span>
+                    <span className="text-base sm:text-sm md:text-base font-bold text-cyan-100 tracking-wider uppercase">Day 1 & 2</span>
                   </div>
                 </motion.div>
                 
@@ -147,7 +147,7 @@ export default function PreJamPlayfestPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: 0.2 }}
-                  className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-extralight text-white tracking-tight relative z-10 bg-gradient-to-b from-white to-cyan-100 bg-clip-text text-transparent"
+                  className="text-3xl sm:text-2xl md:text-3xl lg:text-4xl font-extralight text-white tracking-tight relative z-10 bg-gradient-to-b from-white to-cyan-100 bg-clip-text text-transparent"
                 >
                   Learn
                 </motion.h3>
@@ -181,7 +181,7 @@ export default function PreJamPlayfestPage() {
                   className="mb-4 sm:mb-5 md:mb-6"
                 >
                   <div className="inline-flex items-center px-4 py-1.5 sm:px-5 sm:py-2 md:px-6 md:py-2.5 bg-gradient-to-r from-yellow-500/30 via-yellow-500/40 to-yellow-500/30 border-2 border-yellow-400/50 rounded-full shadow-lg shadow-yellow-500/30 backdrop-blur-sm">
-                    <span className="text-xs sm:text-sm md:text-base font-bold text-yellow-100 tracking-wider uppercase">Day 3</span>
+                    <span className="text-base sm:text-sm md:text-base font-bold text-yellow-100 tracking-wider uppercase">Day 3</span>
                   </div>
                 </motion.div>
                 
@@ -207,7 +207,7 @@ export default function PreJamPlayfestPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: 0.2 }}
-                  className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-extralight text-white tracking-tight relative z-10 bg-gradient-to-b from-white to-yellow-100 bg-clip-text text-transparent"
+                  className="text-3xl sm:text-2xl md:text-3xl lg:text-4xl font-extralight text-white tracking-tight relative z-10 bg-gradient-to-b from-white to-yellow-100 bg-clip-text text-transparent"
                 >
                   Compete
                 </motion.h3>
@@ -228,7 +228,7 @@ export default function PreJamPlayfestPage() {
             whileInView="animate"
             viewport={{ once: true }}
             variants={fadeInUp}
-            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extralight tracking-tight text-white mb-6 sm:mb-8 md:mb-10 lg:mb-12 text-center"
+            className="text-4xl sm:text-3xl md:text-4xl lg:text-5xl font-extralight tracking-tight text-white mb-6 sm:mb-8 md:mb-10 lg:mb-12 text-center"
           >
             Tracks & Participation
           </motion.h2>
@@ -245,10 +245,10 @@ export default function PreJamPlayfestPage() {
               whileHover={{ scale: 1.02 }}
               className="bg-white/5 border border-white/10 rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 lg:p-10 backdrop-blur-md hover:border-purple-500/30 hover:bg-white/10 transition-all duration-300"
             >
-              <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-light text-white mb-3 sm:mb-4 md:mb-6">
+              <h3 className="text-2xl sm:text-xl md:text-2xl lg:text-3xl font-light text-white mb-3 sm:mb-4 md:mb-6">
                 Beginner Track
               </h3>
-              <p className="text-white/80 text-xs sm:text-sm md:text-base lg:text-lg">
+              <p className="text-white/80 text-base sm:text-sm md:text-base lg:text-lg">
                 Perfect for those new to game development. Learn the fundamentals and compete with peers at your level.
               </p>
             </motion.div>
@@ -258,10 +258,10 @@ export default function PreJamPlayfestPage() {
               whileHover={{ scale: 1.02 }}
               className="bg-white/5 border border-white/10 rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 lg:p-10 backdrop-blur-md hover:border-purple-500/30 hover:bg-white/10 transition-all duration-300"
             >
-              <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-light text-white mb-3 sm:mb-4 md:mb-6">
+              <h3 className="text-2xl sm:text-xl md:text-2xl lg:text-3xl font-light text-white mb-3 sm:mb-4 md:mb-6">
                 Open Track
               </h3>
-              <p className="text-white/80 text-xs sm:text-sm md:text-base lg:text-lg">
+              <p className="text-white/80 text-base sm:text-sm md:text-base lg:text-lg">
                 For experienced developers ready to showcase their skills and compete at an advanced level.
               </p>
             </motion.div>
@@ -276,11 +276,11 @@ export default function PreJamPlayfestPage() {
           >
             <div className="space-y-4 sm:space-y-5 md:space-y-6">
               <div>
-                <h3 className="text-base sm:text-lg md:text-xl lg:text-2xl font-light text-white mb-2 sm:mb-3 md:mb-4">Evaluation</h3>
-                <p className="text-white/80 text-xs sm:text-sm md:text-base lg:text-lg mb-2 sm:mb-3">
-                  Each track is evaluated independently. Total Winners: <span className="text-yellow-400 font-semibold text-lg sm:text-xl">10</span>
+                <h3 className="text-xl sm:text-lg md:text-xl lg:text-2xl font-light text-white mb-2 sm:mb-3 md:mb-4">Evaluation</h3>
+                <p className="text-white/80 text-base sm:text-sm md:text-base lg:text-lg mb-2 sm:mb-3">
+                  Each track is evaluated independently. Total Winners: <span className="text-yellow-400 font-semibold text-2xl sm:text-xl">10</span>
                 </p>
-                <ul className="space-y-1.5 sm:space-y-2 text-white/80 text-xs sm:text-sm md:text-base lg:text-lg">
+                <ul className="space-y-1.5 sm:space-y-2 text-white/80 text-base sm:text-sm md:text-base lg:text-lg">
                   <li className="flex items-center gap-2 sm:gap-3">
                     <Trophy className="w-5 h-5 sm:w-6 sm:h-6 text-yellow-400 flex-shrink-0" />
                     <span>5 winners from Beginner Track</span>
@@ -293,8 +293,8 @@ export default function PreJamPlayfestPage() {
               </div>
 
               <div className="pt-4 sm:pt-5 md:pt-6 border-t border-white/10">
-                <h3 className="text-base sm:text-lg md:text-xl lg:text-2xl font-light text-white mb-2 sm:mb-3 md:mb-4">Participation Details</h3>
-                <ul className="space-y-2 sm:space-y-3 text-white/80 text-xs sm:text-sm md:text-base lg:text-lg">
+                <h3 className="text-xl sm:text-lg md:text-xl lg:text-2xl font-light text-white mb-2 sm:mb-3 md:mb-4">Participation Details</h3>
+                <ul className="space-y-2 sm:space-y-3 text-white/80 text-base sm:text-sm md:text-base lg:text-lg">
                   <li className="flex items-start gap-2 sm:gap-3">
                     <span className="text-cyan-400 mt-1 flex-shrink-0 text-base sm:text-lg">•</span>
                     <span>Open to anyone passionate about learning and competing</span>
@@ -318,7 +318,7 @@ export default function PreJamPlayfestPage() {
             whileInView="animate"
             viewport={{ once: true }}
             variants={fadeInUp}
-            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extralight tracking-tight text-white mb-6 sm:mb-8 md:mb-10 lg:mb-12 text-center"
+            className="text-4xl sm:text-3xl md:text-4xl lg:text-5xl font-extralight tracking-tight text-white mb-6 sm:mb-8 md:mb-10 lg:mb-12 text-center"
           >
             Event Timeline
           </motion.h2>
@@ -337,12 +337,12 @@ export default function PreJamPlayfestPage() {
             >
               <div className="flex flex-col gap-2 sm:gap-3 md:gap-4">
                 <div className="flex flex-col sm:flex-row sm:items-center gap-1.5 sm:gap-2 md:gap-4">
-                  <span className="text-cyan-400 font-semibold text-xs sm:text-sm md:text-base lg:text-lg">Registrations Open:</span>
-                  <span className="text-white text-xs sm:text-sm md:text-base lg:text-lg font-light">19 Jan 2026</span>
+                  <span className="text-cyan-400 font-semibold text-base sm:text-sm md:text-base lg:text-lg">Registrations Open:</span>
+                  <span className="text-white text-base sm:text-sm md:text-base lg:text-lg font-light">19 Jan 2026</span>
                 </div>
                 <div className="flex flex-col sm:flex-row sm:items-center gap-1.5 sm:gap-2 md:gap-4">
-                  <span className="text-cyan-400 font-semibold text-xs sm:text-sm md:text-base lg:text-lg">Registrations Close:</span>
-                  <span className="text-white text-xs sm:text-sm md:text-base lg:text-lg font-light">21 Jan 2026</span>
+                  <span className="text-cyan-400 font-semibold text-base sm:text-sm md:text-base lg:text-lg">Registrations Close:</span>
+                  <span className="text-white text-base sm:text-sm md:text-base lg:text-lg font-light">21 Jan 2026</span>
                 </div>
               </div>
             </motion.div>
@@ -362,9 +362,9 @@ export default function PreJamPlayfestPage() {
                   <div className="p-1.5 sm:p-2 bg-purple-500/20 rounded-lg">
                     <Calendar className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-purple-400" />
                   </div>
-                  <h3 className="text-base sm:text-lg md:text-xl lg:text-2xl font-light text-white">{item.date}</h3>
+                  <h3 className="text-xl sm:text-lg md:text-xl lg:text-2xl font-light text-white">{item.date}</h3>
                 </div>
-                <p className="text-white/80 text-xs sm:text-sm md:text-base lg:text-lg ml-8 sm:ml-10 md:ml-12 lg:ml-14">{item.desc}</p>
+                <p className="text-white/80 text-base sm:text-sm md:text-base lg:text-lg ml-8 sm:ml-10 md:ml-12 lg:ml-14">{item.desc}</p>
               </motion.div>
             ))}
           </motion.div>
@@ -379,7 +379,7 @@ export default function PreJamPlayfestPage() {
             whileInView="animate"
             viewport={{ once: true }}
             variants={fadeInUp}
-            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extralight tracking-tight text-white mb-6 sm:mb-8 md:mb-10 lg:mb-12 text-center"
+            className="text-4xl sm:text-3xl md:text-4xl lg:text-5xl font-extralight tracking-tight text-white mb-6 sm:mb-8 md:mb-10 lg:mb-12 text-center"
           >
             Rewards & Certificates
           </motion.h2>
@@ -400,14 +400,14 @@ export default function PreJamPlayfestPage() {
                 <div className="p-1.5 sm:p-2 bg-yellow-500/20 rounded-lg">
                   <Award className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-yellow-400" />
                 </div>
-                <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-light text-white">
+                <h3 className="text-2xl sm:text-xl md:text-2xl lg:text-3xl font-light text-white">
                   Win Exciting Rewards
                 </h3>
               </div>
-              <p className="text-white/80 text-xs sm:text-sm md:text-base lg:text-lg mb-3 sm:mb-4 md:mb-6">
-                <span className="text-yellow-400 font-semibold text-lg sm:text-xl">10 winners</span> in total:
+              <p className="text-white/80 text-base sm:text-sm md:text-base lg:text-lg mb-3 sm:mb-4 md:mb-6">
+                <span className="text-yellow-400 font-semibold text-2xl sm:text-xl">10 winners</span> in total:
               </p>
-              <ul className="space-y-2 sm:space-y-3 text-white/80 text-xs sm:text-sm md:text-base lg:text-lg mb-4 sm:mb-5 md:mb-6 lg:mb-8">
+              <ul className="space-y-2 sm:space-y-3 text-white/80 text-base sm:text-sm md:text-base lg:text-lg mb-4 sm:mb-5 md:mb-6 lg:mb-8">
                 <li className="flex items-center gap-2 sm:gap-3">
                   <Trophy className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-yellow-400 flex-shrink-0" />
                   <span>5 winners from Beginner Track</span>
@@ -419,7 +419,7 @@ export default function PreJamPlayfestPage() {
               </ul>
 
               <div className="pt-4 sm:pt-5 md:pt-6 lg:pt-8 border-t border-white/10">
-                <h4 className="text-base sm:text-lg md:text-xl lg:text-2xl font-light text-white mb-3 sm:mb-4 md:mb-6">Goodies:</h4>
+                <h4 className="text-xl sm:text-lg md:text-xl lg:text-2xl font-light text-white mb-3 sm:mb-4 md:mb-6">Goodies:</h4>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-3 md:gap-4">
                   {["T-shirts", "Diaries", "Bookmarks", "Sticker sheets"].map((item, index) => (
                     <motion.div
@@ -431,7 +431,7 @@ export default function PreJamPlayfestPage() {
                       whileHover={{ scale: 1.05 }}
                       className="text-center p-3 sm:p-4 md:p-5 bg-white/5 rounded-lg sm:rounded-xl hover:bg-white/10 transition-all duration-300 border border-white/5 hover:border-white/20"
                     >
-                      <p className="text-white/90 text-xs sm:text-sm md:text-base font-light">{item}</p>
+                      <p className="text-white/90 text-base sm:text-sm md:text-base font-light">{item}</p>
                     </motion.div>
                   ))}
                 </div>
@@ -447,11 +447,11 @@ export default function PreJamPlayfestPage() {
                 <div className="p-1.5 sm:p-2 bg-cyan-500/20 rounded-lg">
                   <Users className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-cyan-400" />
                 </div>
-                <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-light text-white">
+                <h3 className="text-2xl sm:text-xl md:text-2xl lg:text-3xl font-light text-white">
                   Participation Certificate
                 </h3>
               </div>
-              <ul className="space-y-2 sm:space-y-3 text-white/80 text-xs sm:text-sm md:text-base lg:text-lg">
+              <ul className="space-y-2 sm:space-y-3 text-white/80 text-base sm:text-sm md:text-base lg:text-lg">
                 <li className="flex items-start gap-2 sm:gap-3">
                   <span className="text-cyan-400 mt-1 flex-shrink-0 text-base sm:text-lg">•</span>
                   <span>Official e-Certificate for every participant</span>
@@ -474,7 +474,7 @@ export default function PreJamPlayfestPage() {
             whileInView="animate"
             viewport={{ once: true }}
             variants={fadeInUp}
-            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extralight tracking-tight text-white mb-6 sm:mb-8 md:mb-10 lg:mb-12 text-center"
+            className="text-4xl sm:text-3xl md:text-4xl lg:text-5xl font-extralight tracking-tight text-white mb-6 sm:mb-8 md:mb-10 lg:mb-12 text-center"
           >
             Thanking Our Sponsors & Partners
           </motion.h2>
@@ -486,7 +486,7 @@ export default function PreJamPlayfestPage() {
             variants={fadeInUp}
             className="bg-white/5 border border-white/10 rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 lg:p-10 backdrop-blur-md hover:bg-white/10 transition-all duration-300"
           >
-            <p className="text-white/70 text-base sm:text-lg md:text-xl lg:text-2xl mb-2 sm:mb-3 md:mb-4 lg:mb-5 text-center tracking-wide">Powered By</p>
+            <p className="text-white/70 text-xl sm:text-lg md:text-xl lg:text-2xl mb-2 sm:mb-3 md:mb-4 lg:mb-5 text-center tracking-wide">Powered By</p>
             <div className="flex justify-center items-center w-full">
               <Link
                 href="https://unstop.com/"
@@ -526,7 +526,7 @@ export default function PreJamPlayfestPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
-              className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-light text-white mb-4 sm:mb-5 md:mb-6 lg:mb-8"
+              className="text-3xl sm:text-2xl md:text-3xl lg:text-4xl font-light text-white mb-4 sm:mb-5 md:mb-6 lg:mb-8"
             >
               Ready to Learn & Compete?
             </motion.h2>
@@ -540,7 +540,7 @@ export default function PreJamPlayfestPage() {
                 href="https://unstop.com/quiz/jam-play-fest-indian-institute-of-information-technology-iiit-sri-city-1623255"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-6 sm:px-8 md:px-10 py-3 sm:py-4 md:py-5 bg-white text-black rounded-lg sm:rounded-xl font-semibold hover:bg-white/90 transition-all duration-300 text-xs sm:text-sm md:text-base lg:text-lg shadow-lg hover:shadow-xl hover:scale-105"
+                className="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-6 sm:px-8 md:px-10 py-3 sm:py-4 md:py-5 bg-white text-black rounded-lg sm:rounded-xl font-semibold hover:bg-white/90 transition-all duration-300 text-base sm:text-sm md:text-base lg:text-lg shadow-lg hover:shadow-xl hover:scale-105"
               >
                 Register Now on Unstop
                 <ExternalLink className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
