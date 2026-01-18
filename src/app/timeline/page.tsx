@@ -42,28 +42,28 @@ const EVENTS = [
     color: "cyan" 
   },
   { 
-    date: "Dec 1, 2025", 
-    title: "Jammer Registration Opens", 
-    desc: "Participants can sign up and join a site to prepare for the event.", 
-    icon: Users, 
-    color: "purple" 
-  },
-  { 
     date: "Jan 12, 2026", 
     title: "Site Registration Closes", 
     desc: "Last call for new jam sites to be registered globally.", 
     icon: CheckCircle, 
+    color: "purple" 
+  },
+  { 
+    date: "Jan 18, 2026", 
+    title: "Jammer Registration Opens", 
+    desc: "Participants can sign up and join a site to prepare for the event.", 
+    icon: Users, 
     color: "yellow" 
   },
   { 
-    date: "Jan 19-23, 2026", 
+    date: "Jan 19-29, 2026", 
     title: "Prep Week", 
     desc: "A week of talks, tutorials, and getting ready for the big event.", 
     icon: BookOpen, 
     color: "cyan" 
   },
   { 
-    date: "Jan 25, 2026", 
+    date: "Jan 30, 2026", 
     title: "Global Theme Reveal", 
     desc: "The secret theme is announced! Brainstorming begins.", 
     icon: Rocket, 

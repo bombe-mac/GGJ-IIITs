@@ -255,6 +255,8 @@ export default function Hero({
   const headerRef = useRef<HTMLHeadingElement | null>(null);
   const logoRef = useRef<HTMLDivElement | null>(null);
   const paraRef = useRef<HTMLParagraphElement | null>(null);
+  const poweredByRef = useRef<HTMLDivElement | null>(null);
+  const registerButtonRef = useRef<HTMLButtonElement | null>(null);
   const ctaRef = useRef<HTMLDivElement | null>(null);
   const badgeRef = useRef<HTMLDivElement | null>(null);
   const microRef = useRef<HTMLUListElement | null>(null);
@@ -311,8 +313,14 @@ export default function Hero({
         if (badgeRef.current) {
           gsap.set(badgeRef.current, { autoAlpha: 0, y: -8 });
         }
+        if (poweredByRef.current) {
+          gsap.set(poweredByRef.current, { autoAlpha: 0, y: 8 });
+        }
         if (paraRef.current) {
           gsap.set(paraRef.current, { autoAlpha: 0, y: 8 });
+        }
+        if (registerButtonRef.current) {
+          gsap.set(registerButtonRef.current, { opacity: 0, y: 8 });
         }
         if (ctaRef.current) {
           gsap.set(ctaRef.current, { autoAlpha: 0, y: 8 });
@@ -363,8 +371,14 @@ export default function Hero({
           );
         }
 
+        if (poweredByRef.current) {
+          tl.to(poweredByRef.current, { autoAlpha: 1, y: 0, duration: 0.5 }, '-=0.6');
+        }
         if (paraRef.current) {
           tl.to(paraRef.current, { autoAlpha: 1, y: 0, duration: 0.5 }, '-=0.55');
+        }
+        if (registerButtonRef.current) {
+          tl.to(registerButtonRef.current, { opacity: 1, y: 0, duration: 0.5 }, '-=0.5');
         }
         if (ctaRef.current) {
           tl.to(ctaRef.current, { autoAlpha: 1, y: 0, duration: 0.5 }, '-=0.35');
@@ -381,7 +395,7 @@ export default function Hero({
     <section ref={sectionRef} className="relative min-h-screen w-full overflow-hidden">
       <ShaderBackground />
 
-      <div className={`relative mx-auto flex max-w-7xl flex-col gap-6 px-6 pb-24 pt-36 sm:gap-8 sm:pt-44 md:px-10 lg:px-16 ${logoImageUrl ? 'items-start' : 'items-center'}`}>
+      <div className={`relative mx-auto flex max-w-7xl flex-col gap-6 px-6 pb-32 sm:pb-40 md:pb-48 pt-36 sm:gap-8 sm:pt-44 md:px-10 lg:px-16 ${logoImageUrl ? 'items-start' : 'items-center'} z-10`}>
         <div className={`flex flex-col sm:flex-row items-center sm:items-center gap-6 sm:gap-8 ${logoImageUrl ? 'lg:gap-40' : ''}`}>
           {logoImageUrl && (
             <div ref={logoRef} className="flex-shrink-0 order-1 sm:order-2">
@@ -399,9 +413,33 @@ export default function Hero({
           </h1>
         </div>
 
+        {title.includes("Pre-Jam Playfest") && (
+          <div ref={poweredByRef} className={`flex items-center gap-2.5 ${logoImageUrl ? 'justify-start' : 'justify-center'}`}>
+            <span className="text-sm sm:text-base md:text-lg font-light text-white/50 tracking-wider uppercase">Powered By</span>
+            <span className="text-base sm:text-lg md:text-xl font-bold text-white tracking-tight">Unstop</span>
+          </div>
+        )}
+
         <p ref={paraRef} className={`max-w-xl text-lg sm:text-lg md:text-xl font-light leading-relaxed tracking-tight text-white/75 ${logoImageUrl ? 'text-left' : 'text-center'}`}>
           {description}
         </p>
+
+        {title.includes("Pre-Jam Playfest") && (
+          <div className={`flex w-full justify-center ${logoImageUrl ? 'sm:justify-start' : ''} mt-6 sm:mt-8 md:mt-10 mb-8 sm:mb-12 md:mb-16 relative z-10`}>
+            <button
+              ref={registerButtonRef}
+              onClick={() => {
+                const element = document.getElementById('register-cta');
+                if (element) {
+                  element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+              }}
+              className="inline-flex items-center justify-center gap-2 px-6 sm:px-8 md:px-10 lg:px-12 py-3 sm:py-4 md:py-5 lg:py-6 bg-white text-black rounded-xl sm:rounded-2xl font-bold hover:bg-white/90 transition-all duration-300 text-base sm:text-lg md:text-xl lg:text-2xl shadow-2xl hover:shadow-3xl hover:scale-110 active:scale-105 whitespace-nowrap relative z-20 w-full sm:w-auto"
+            >
+              Register Now
+            </button>
+          </div>
+        )}
 
         
 

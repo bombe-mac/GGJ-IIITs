@@ -32,7 +32,7 @@ export default function PreJamPlayfestPage() {
       />
 
       {/* About Section */}
-      <section className="relative bg-black -mt-96 sm:-mt-80 md:-mt-48 pb-8 px-4 sm:pb-12 md:pb-16 sm:px-6 md:px-16">
+      <section className="relative bg-black -mt-72 sm:-mt-80 md:-mt-48 pb-8 px-4 sm:pb-12 md:pb-16 sm:px-6 md:px-16">
         <div className="max-w-5xl mx-auto">
           <motion.div 
             initial="initial"
@@ -512,7 +512,7 @@ export default function PreJamPlayfestPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="relative bg-black py-8 px-4 sm:py-12 md:py-16 sm:px-6 md:px-16 pb-12 sm:pb-16 md:pb-20 lg:pb-24">
+      <section id="register-cta" className="relative bg-black py-8 px-4 sm:py-12 md:py-16 sm:px-6 md:px-16 pb-12 sm:pb-16 md:pb-20 lg:pb-24">
         <div className="max-w-5xl mx-auto">
           <motion.div 
             initial="initial"
