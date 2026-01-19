@@ -262,7 +262,7 @@ export default function PreJamPlayfestPage() {
                 Open Track
               </h3>
               <p className="text-white/80 text-base sm:text-sm md:text-base lg:text-lg">
-               For all other senior undergraduates (all other UG's).
+               For all other senior undergraduates (all other UGs).
               </p>
             </motion.div>
           </motion.div>

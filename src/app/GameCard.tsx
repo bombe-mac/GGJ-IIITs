@@ -20,8 +20,6 @@ type Props = {
   index: number;
 };
 
-
-
 const TechList = ({ title, items, icon }: { title: string; items: string[]; icon: React.ReactNode }) => (
   <div className="flex-1">
     <p className="text-[10px] text-gray-500 font-bold uppercase mb-2 flex items-center gap-1">
@@ -40,6 +38,7 @@ const TechList = ({ title, items, icon }: { title: string; items: string[]; icon
 const GameCard: React.FC<Props> = ({ game, index }) => {
   const cardRef = useRef<HTMLDivElement>(null);
   const [hovered, setHovered] = useState(false);
+  void hovered; // prevent @typescript-eslint/no-unused-vars if hovered isn't used elsewhere
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
   const handleMouseMove = (e: React.MouseEvent) => {
