@@ -152,6 +152,59 @@ export default function DemoOne() {
                 </p>
               </div>
             </details>
+
+            <details className="group bg-white/5 border border-white/10 rounded-xl overflow-hidden hover:bg-white/10 transition-colors backdrop-blur-sm">
+              <summary className="flex justify-between items-center p-6 cursor-pointer list-none">
+                <h3 className="text-xl font-light text-white">Are food options available at the event?</h3>
+                <svg className="w-5 h-5 text-white/70 transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </summary>
+              <div className="px-6 pb-6">
+                <p className="text-white/70 leading-relaxed">
+                  Yes, food will be available at the venue, including burgers and coffee.
+                </p>
+              </div>
+            </details>
+
+            <details className="group bg-white/5 border border-white/10 rounded-xl overflow-hidden hover:bg-white/10 transition-colors backdrop-blur-sm">
+              <summary className="flex justify-between items-center p-6 cursor-pointer list-none">
+                <h3 className="text-xl font-light text-white">How do I register for Global Game Jam (GGJ)?</h3>
+                <svg className="w-5 h-5 text-white/70 transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </summary>
+              <div className="px-6 pb-6">
+                <div className="text-white/70 leading-relaxed space-y-2">
+                  <p>To register for Global Game Jam, follow these steps:</p>
+                  <ol className="list-decimal pl-5 space-y-1">
+                  <li>Click on “Participate in Jam” at the top of the Global Game Jam website.</li>
+                  <li>Log in to the official GGJ website.</li>
+                  <li>Search for the jam site named “GGJ26 IIIT Sri City”.</li>
+                  <li>Complete the registration process for the event.</li>
+                  </ol>
+                </div>
+              </div>
+            </details>
+
+            <details className="group bg-white/5 border border-white/10 rounded-xl overflow-hidden hover:bg-white/10 transition-colors backdrop-blur-sm">
+              <summary className="flex justify-between items-center p-6 cursor-pointer list-none">
+                <h3 className="text-xl font-light text-white">How do I register for Pre-Jam Playfest?</h3>
+                <svg className="w-5 h-5 text-white/70 transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </summary>
+              <div className="px-6 pb-6">
+                <div className="text-white/70 leading-relaxed space-y-2">
+                  <p>To register for Pre-Jam Playfest, follow these steps:</p>
+                  <ol className="list-decimal pl-5 space-y-1">
+                  <li>Visit the Pre-Jam Playfest section on the website</li>
+                  <li>Click on the Register on Unstop button</li>
+                  <li>Log in to Unstop and complete your registration</li>
+                  </ol>
+                </div>
+              </div>
+            </details>
           </div>
         </div>
       </section>
