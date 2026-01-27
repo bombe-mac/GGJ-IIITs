@@ -59,7 +59,7 @@ export default function DemoOne() {
     <div className="w-screen min-h-screen flex flex-col relative">
       <Hero 
         title="Global Game Jam IIITs"
-        description="The GGJ is the world&apos;s largest game creation event taking place around the globe boasting tens of thousands of participants (jammers) at hundreds of physical and virtual sites in over one hundred countries around the world."
+        description="The GGJ is the world&apos;s largest game creation event, bringing together tens of thousands of participants—known as jammers—across hundreds of physical and virtual sites in over 100 countries. At IIIT Sri City, the event is hosted by IOTA, providing students with a unique opportunity to collaborate, innovate, and build games within a limited time frame. The event also features a total prize pool of ₹15,000, encouraging creativity, teamwork, and technical excellence among participants."
         logoImageUrl="/GGJ-logo.svg"
         logoAltText="GGj Logo"
         microDetails={[]} // removed micro details
@@ -178,7 +178,7 @@ export default function DemoOne() {
                 <div className="text-white/70 leading-relaxed space-y-2">
                   <p>To register for Global Game Jam, follow these steps:</p>
                   <ol className="list-decimal pl-5 space-y-1">
-                  <li>Click on “Participate in Jam” at the top of the Global Game Jam website.</li>
+                  <li>Click on “Register” at the top of the Global Game Jam website.</li>
                   <li>Log in to the official GGJ website.</li>
                   <li>Search for the jam site named “GGJ26 IIIT Sri City”.</li>
                   <li>Complete the registration process for the event.</li>
