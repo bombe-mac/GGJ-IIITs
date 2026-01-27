@@ -446,7 +446,7 @@ export default function Hero({
           <div className="flex w-full justify-center sm:hidden mt-4 mb-8 relative z-10">
             <button
               onClick={() => {
-                window.open('https://globalgamejam.org/jam-sites/2025/ggj26-iiit-sri-city', '_blank');
+                window.open('https://globalgamejam.org/user/register', '_blank');
               }}
               className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-white text-black rounded-xl font-bold hover:bg-white/90 active:bg-white/80 transition-all duration-300 text-base shadow-2xl hover:shadow-3xl hover:scale-110 active:scale-95 whitespace-nowrap relative z-20 w-full touch-manipulation cursor-pointer select-none"
             >
