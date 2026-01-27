@@ -420,9 +420,40 @@ export default function Hero({
           </div>
         )}
 
-        <p ref={paraRef} className={`max-w-xl text-lg sm:text-lg md:text-xl font-light leading-relaxed tracking-tight text-white/75 ${logoImageUrl ? 'text-left' : 'text-center'}`}>
-          {description}
-        </p>
+        {/* Description and Register button container */}
+        <div className={`flex flex-col sm:flex-row sm:items-start gap-6 sm:gap-8 ${logoImageUrl ? '' : 'items-center'}`}>
+          <p ref={paraRef} className={`max-w-xl text-lg sm:text-lg md:text-xl font-light leading-relaxed tracking-tight text-white/75 ${logoImageUrl ? 'text-left' : 'text-center'}`}>
+            {description}
+          </p>
+
+          {/* Register button beside description - desktop only for home page */}
+          {!title.includes("Pre-Jam Playfest") && logoImageUrl && (
+            <button
+              ref={registerButtonRef}
+              onClick={() => {
+                window.open('https://globalgamejam.org/jam-sites/2025/ggj26-iiit-sri-city', '_blank');
+              }}
+              className="hidden sm:inline-flex flex-shrink-0 items-center justify-center gap-2 px-8 md:px-10 lg:px-12 py-4 md:py-5 lg:py-5 bg-white text-black rounded-2xl font-bold hover:bg-white/90 active:bg-white/80 transition-all duration-300 text-lg md:text-xl lg:text-2xl shadow-2xl hover:shadow-3xl hover:scale-110 active:scale-95 whitespace-nowrap relative z-20 touch-manipulation cursor-pointer select-non ml-50 mt-15"
+            >
+              Register Now
+            </button>
+          )}
+        </div>
+
+        {/* Register button below description - mobile only for home page */}
+        {!title.includes("Pre-Jam Playfest") && logoImageUrl && (
+          <div className="flex w-full justify-center sm:hidden mt-4 mb-8 relative z-10">
+            <button
+              ref={registerButtonRef}
+              onClick={() => {
+                window.open('https://globalgamejam.org/jam-sites/2025/ggj26-iiit-sri-city', '_blank');
+              }}
+              className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-white text-black rounded-xl font-bold hover:bg-white/90 active:bg-white/80 transition-all duration-300 text-base shadow-2xl hover:shadow-3xl hover:scale-110 active:scale-95 whitespace-nowrap relative z-20 w-full touch-manipulation cursor-pointer select-none"
+            >
+              Register Now
+            </button>
+          </div>
+        )}
 
         {title.includes("Pre-Jam Playfest") && (
           <div className={`flex w-full justify-center ${logoImageUrl ? 'sm:justify-start' : ''} mt-6 sm:mt-8 md:mt-10 mb-8 sm:mb-12 md:mb-16 relative z-10`}>

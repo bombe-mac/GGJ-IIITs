@@ -61,7 +61,7 @@ export default function DemoOne() {
         title="Global Game Jam IIITs"
         description="The GGJ is the world&apos;s largest game creation event, bringing together tens of thousands of participants—known as jammers—across hundreds of physical and virtual sites in over 100 countries. At IIIT Sri City, the event is hosted by IOTA, providing students with a unique opportunity to collaborate, innovate, and build games within a limited time frame. The event also features a total prize pool of ₹15,000, encouraging creativity, teamwork, and technical excellence among participants."
         logoImageUrl="/GGJ-logo.svg"
-        logoAltText="GGj Logo"
+        logoAltText="GGJ Logo"
         microDetails={[]} // removed micro details
       />  
 
