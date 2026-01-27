@@ -396,47 +396,48 @@ export default function Hero({
       <ShaderBackground />
 
       <div className={`relative mx-auto flex max-w-7xl flex-col gap-6 px-6 pb-32 sm:pb-40 md:pb-48 pt-36 sm:gap-8 sm:pt-44 md:px-10 lg:px-16 ${logoImageUrl ? 'items-start' : 'items-center'} z-10`}>
-        <div className={`flex flex-col sm:flex-row items-center sm:items-center gap-6 sm:gap-8 ${logoImageUrl ? 'lg:gap-40' : ''}`}>
+        <div className={`flex flex-col sm:flex-row items-center sm:items-start gap-6 sm:gap-8 ${logoImageUrl ? 'lg:gap-16' : ''} w-full`}>
+          {/* Left side: Title + Description + Button (desktop) */}
+          <div className="flex flex-col gap-6 sm:gap-8 order-2 sm:order-1 flex-1">
+            <h1 ref={headerRef} className={`max-w-2xl text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extralight leading-[1.05] tracking-tight text-white ${logoImageUrl ? 'text-center sm:text-left' : 'text-center'}`}>
+              {title}
+            </h1>
+
+            {title.includes("Pre-Jam Playfest") && (
+              <div ref={poweredByRef} className={`flex items-center gap-2.5 ${logoImageUrl ? 'justify-center sm:justify-start' : 'justify-center'}`}>
+                <span className="text-sm sm:text-base md:text-lg font-light text-white/50 tracking-wider uppercase">Powered By</span>
+                <span className="text-base sm:text-lg md:text-xl font-bold text-white tracking-tight">Unstop</span>
+              </div>
+            )}
+
+            <p ref={paraRef} className={`max-w-xl text-lg sm:text-lg md:text-xl font-light leading-relaxed tracking-tight text-white/75 ${logoImageUrl ? 'text-center sm:text-left' : 'text-center'}`}>
+              {description}
+            </p>
+          </div>
+
+          {/* Right side: Logo + Register button below logo (desktop) */}
           {logoImageUrl && (
-            <div ref={logoRef} className="flex-shrink-0 order-1 sm:order-2">
+            <div ref={logoRef} className="flex-shrink-0 order-1 sm:order-2 flex flex-col items-center gap-6">
               <Image
                 src={logoImageUrl}
                 alt={logoAltText || "Logo"}
                 width={400}
                 height={400}
-                className="w-100 sm:w-100 lg:w-100 h-auto object-contain"
+                className="w-60 sm:w-80 lg:w-96 h-auto object-contain"
               />
+              {/* Register button below logo - desktop only for home page */}
+              {!title.includes("Pre-Jam Playfest") && (
+                <button
+                  ref={registerButtonRef}
+                  onClick={() => {
+                    window.open('https://globalgamejam.org/user/register', '_blank');
+                  }}
+                  className="hidden sm:inline-flex items-center justify-center gap-2 px-8 md:px-10 lg:px-12 py-4 md:py-5 lg:py-5 bg-white text-black rounded-2xl font-bold hover:bg-white/90 active:bg-white/80 transition-all duration-300 text-lg md:text-xl lg:text-2xl shadow-2xl hover:shadow-3xl hover:scale-110 active:scale-95 whitespace-nowrap relative z-20 touch-manipulation cursor-pointer select-none"
+                >
+                  Register Now
+                </button>
+              )}
             </div>
-          )}
-          <h1 ref={headerRef} className={`max-w-2xl text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extralight leading-[1.05] tracking-tight text-white ${logoImageUrl ? 'order-2 sm:order-1 text-center sm:text-left' : 'text-center'}`}>
-            {title}
-          </h1>
-        </div>
-
-        {title.includes("Pre-Jam Playfest") && (
-          <div ref={poweredByRef} className={`flex items-center gap-2.5 ${logoImageUrl ? 'justify-start' : 'justify-center'}`}>
-            <span className="text-sm sm:text-base md:text-lg font-light text-white/50 tracking-wider uppercase">Powered By</span>
-            <span className="text-base sm:text-lg md:text-xl font-bold text-white tracking-tight">Unstop</span>
-          </div>
-        )}
-
-        {/* Description and Register button container */}
-        <div className={`flex flex-col sm:flex-row sm:items-start gap-6 sm:gap-8 ${logoImageUrl ? '' : 'items-center'}`}>
-          <p ref={paraRef} className={`max-w-xl text-lg sm:text-lg md:text-xl font-light leading-relaxed tracking-tight text-white/75 ${logoImageUrl ? 'text-left' : 'text-center'}`}>
-            {description}
-          </p>
-
-          {/* Register button beside description - desktop only for home page */}
-          {!title.includes("Pre-Jam Playfest") && logoImageUrl && (
-            <button
-              ref={registerButtonRef}
-              onClick={() => {
-                window.open('https://globalgamejam.org/jam-sites/2025/ggj26-iiit-sri-city', '_blank');
-              }}
-              className="hidden sm:inline-flex flex-shrink-0 items-center justify-center gap-2 px-8 md:px-10 lg:px-12 py-4 md:py-5 lg:py-5 bg-white text-black rounded-2xl font-bold hover:bg-white/90 active:bg-white/80 transition-all duration-300 text-lg md:text-xl lg:text-2xl shadow-2xl hover:shadow-3xl hover:scale-110 active:scale-95 whitespace-nowrap relative z-20 touch-manipulation cursor-pointer select-non ml-50 mt-15"
-            >
-              Register Now
-            </button>
           )}
         </div>
 
@@ -444,7 +445,6 @@ export default function Hero({
         {!title.includes("Pre-Jam Playfest") && logoImageUrl && (
           <div className="flex w-full justify-center sm:hidden mt-4 mb-8 relative z-10">
             <button
-              ref={registerButtonRef}
               onClick={() => {
                 window.open('https://globalgamejam.org/jam-sites/2025/ggj26-iiit-sri-city', '_blank');
               }}
