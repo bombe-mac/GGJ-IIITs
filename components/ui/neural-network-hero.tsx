@@ -430,7 +430,7 @@ export default function Hero({
                 <button
                   ref={registerButtonRef}
                   onClick={() => {
-                    window.open('https://globalgamejam.org/user/register', '_blank');
+                    window.open('https://globalgamejam.org/jam-sites/2026/iiit-sri-city-ggj', '_blank');
                   }}
                   className="hidden sm:inline-flex items-center justify-center gap-2 px-8 md:px-10 lg:px-12 py-4 md:py-5 lg:py-5 bg-white text-black rounded-2xl font-bold hover:bg-white/90 active:bg-white/80 transition-all duration-300 text-lg md:text-xl lg:text-2xl shadow-2xl hover:shadow-3xl hover:scale-110 active:scale-95 whitespace-nowrap relative z-20 touch-manipulation cursor-pointer select-none"
                 >
@@ -446,7 +446,7 @@ export default function Hero({
           <div className="flex w-full justify-center sm:hidden mt-4 mb-8 relative z-10">
             <button
               onClick={() => {
-                window.open('https://globalgamejam.org/user/register', '_blank');
+                window.open('https://globalgamejam.org/jam-sites/2026/iiit-sri-city-ggj', '_blank');
               }}
               className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-white text-black rounded-xl font-bold hover:bg-white/90 active:bg-white/80 transition-all duration-300 text-base shadow-2xl hover:shadow-3xl hover:scale-110 active:scale-95 whitespace-nowrap relative z-20 w-full touch-manipulation cursor-pointer select-none"
             >
