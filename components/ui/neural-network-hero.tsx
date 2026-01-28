@@ -472,7 +472,7 @@ export default function Hero({
           <div className="flex flex-col w-full justify-center sm:hidden gap-4 mb-8 relative z-10">
             <p className="text-white/75 font-semibold text-center text-lg">IMPORTANT: Participants registered on the official site should fill the form below.</p>
             <a 
-              href="https://forms.gle/R9EhHCXWbtTxGW5J7yeh" 
+              href="https://forms.gle/jqm74i7CyiZEbPRd7" 
               target="_blank" 
               rel="noopener noreferrer" 
               className="inline-flex items-center justify-center px-6 py-3 bg-white hover:bg-white/90 text-black/90 rounded-xl font-bold transition-all duration-300 hover:shadow-lg hover:scale-105 active:scale-95 w-full"
