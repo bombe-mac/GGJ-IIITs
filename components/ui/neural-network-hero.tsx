@@ -413,6 +413,18 @@ export default function Hero({
             <p ref={paraRef} className={`max-w-xl text-lg sm:text-lg md:text-xl font-light leading-relaxed tracking-tight text-white/75 ${logoImageUrl ? 'text-center sm:text-left' : 'text-center'}`}>
               {description}
             </p>
+
+            <div className={`hidden sm:block max-w-xl text-lg sm:text-lg md:text-xl font-light leading-relaxed tracking-tight ${logoImageUrl ? 'text-center sm:text-left' : 'text-center'}`}>
+              <p className="text-white/75 font-semibold mb-4">IMPORTANT: Participants registered on the official site should fill the form below. It is mandatory to complete this form.</p>
+              <a 
+                href="https://forms.gle/jqm74i7CyiZEbPRd7" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="inline-flex items-center justify-center px-6 sm:px-8 py-2 sm:py-3 bg-white hover:bg-white/90 text-black/90 rounded-xl font-bold transition-all duration-300 hover:shadow-lg hover:scale-105 active:scale-95"
+              >
+                Fill the Form
+              </a>
+            </div>
           </div>
 
           {/* Right side: Logo + Register button below logo (desktop) */}
@@ -452,6 +464,21 @@ export default function Hero({
             >
               Register Now
             </button>
+          </div>
+        )}
+
+        {/* Important message and form button - mobile only */}
+        {!title.includes("Pre-Jam Playfest") && logoImageUrl && (
+          <div className="flex flex-col w-full justify-center sm:hidden gap-4 mb-8 relative z-10">
+            <p className="text-white/75 font-semibold text-center text-lg">IMPORTANT: Participants registered on the official site should fill the form below.</p>
+            <a 
+              href="https://forms.gle/R9EhHCXWbtTxGW5J7yeh" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="inline-flex items-center justify-center px-6 py-3 bg-white hover:bg-white/90 text-black/90 rounded-xl font-bold transition-all duration-300 hover:shadow-lg hover:scale-105 active:scale-95 w-full"
+            >
+              Fill the Form
+            </a>
           </div>
         )}
 
